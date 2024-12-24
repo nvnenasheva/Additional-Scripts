@@ -19,7 +19,6 @@ def download_go_dag(input_dir):
         print("GO DAG file already exists. Skipping download.")
     return obo_file
 
-
 # Calculate the total number of genes annotated
 def calculate_annotation_percentage(input_file):
     """
@@ -208,7 +207,7 @@ fig, ax = plot_pie_chart(
     top_n=10, 
     title='Top 10 GO Terms in Asterionella formosa',
     shadow=True,
-    include_unknown=False  # !!! Set to False to exclude 'Unknown GO term'
+    include_unknown=True  # !!! Set to False to exclude 'Unknown GO term'
 )
 
 # Save the plot to a file

@@ -8,10 +8,11 @@ from Bio import SeqIO
 
 # list of the input fasta files given to the OrthoFinder 
 fasta_files = [
-    'input/GCF_000002975.1.faa',
-    'input/GCF_000018645.1.faa',
-    'input/GCF_000194455.1.faa',
-    'input/GCF_000315625.1.faa'
+    '/home/natalia/Downloads/ncbi_dataset/data/GCA_000372725.1/GCA_000372725.1.faa',
+    '/home/natalia/Downloads/ncbi_dataset/data/GCA_041296205.1/GCA_041296205.1.faa',
+    '/home/natalia/Downloads/ncbi_dataset/data/GCA_026770615.1/GCA_026770615.1.faa',
+    '/home/natalia/Downloads/ncbi_dataset/data/GCA_019448385.1/GCA_019448385.1.faa',
+    '/home/natalia/Downloads/ncbi_dataset/data/GCA_001275005.1/GCA_001275005.1.faa'
 ]
 
 # create a mapping from protein IDs to species
@@ -21,11 +22,19 @@ all_species = set()
 for fasta_file in fasta_files:
     species = os.path.basename(fasta_file).split('.')[0]
     # map species codes to descriptive names (optional), I used scientific name taken from NCBI (it will be used leater on in the script)
-    species_names = {
+    '''species_names = {
         'GCF_000002975': 'Guillardia_theta',
         'GCF_000018645': 'Hemiselmis_andersenii',
         'GCF_000194455': 'Cryptomonas_paramecium',
-        'GCF_000315625': 'Guillardia_theta_CCMP2712 '
+        'GCF_000315625': 'Guillardia_theta_CCMP2712'
+    }'''
+
+    species_names = {
+        'GCA_001275005.1' : 'Chrysochromulina_tobinii',
+        'GCA_019448385.1' : 'Diacronema_lutheri',
+        'GCA_026770615.1' : 'Pavlovales_sp_CCMP2436',
+        'GCA_041296205.1' : 'Prymnesium_parvum',
+        'GCF_000372725.1' : 'Emiliania_huxleyi_CCMP1516'
     }
     species_name = species_names.get(species, species)
     all_species.add(species_name)
@@ -49,7 +58,7 @@ for fasta_file in fasta_files:
             protein_to_species[protein_id].append(species_name)
 
 # Step 2: read the Orthogroups.txt file and assign species using the mapping
-orthogroups_file = 'input/Orthogroups.txt'
+orthogroups_file = '/home/natalia/PycharmProjects/addtional_scripts/input/Haptophytes/Orthogroups.txt'
 orthogroups = {}
 
 with open(orthogroups_file, 'r') as og_file:
@@ -87,7 +96,7 @@ for og_id, og_data in orthogroups.items():
         selected_orthogroups[og_id] = og_data
 
 # Step 5: output the selected orthogroups and their proteins
-output_file = 'output/Conserved_Orthogroups.txt'
+output_file = '/home/natalia/PycharmProjects/addtional_scripts/input/Haptophytes/Conserved_Orthogroups.txt'
 with open(output_file, 'w') as out_file:
     for og_id, og_data in selected_orthogroups.items():
         proteins_formatted = [f"{species}|{protein}" for species, protein in og_data['proteins']]
@@ -109,7 +118,7 @@ if extract_sequences:
             proteins_to_extract.add((species, protein_id))
 
     # create a combined FASTA file with a descriptive name
-    output_fasta = 'output/Conserved_Proteins.faa'
+    output_fasta = '/home/natalia/PycharmProjects/addtional_scripts/input/Haptophytes/Conserved_Proteins.faa'
     with open(output_fasta, 'w') as out_handle:
         for fasta_file in fasta_files:
             # get species code and name
