@@ -97,8 +97,50 @@ This script processes orthogroup data for a set of protein sequences and selects
   ```    
 - Pie Chart of Top GO Terms: a visual representation of the most frequent GO terms in the dataset (`Asterionella_formosa_GOterms_piechart.png`)
 
-### Applications
+**Applications**
 
 - Analyze the distribution of Gene Ontology (GO) terms associated with genes for functional annotation.  
 - Visualize the most frequently occurring GO terms in a dataset to identify key biological processes, molecular functions, and cellular components.  
 - Generate human-readable gene-to-GO mappings for downstream analysis or reporting.  
+
+
+## 4. `fantasiaResultsProcessing.py`
+
+**Input Files**
+
+- Gene-to-GO Mapping Files:  each file maps species to GO terms (`input/*_topGo.txt`).
+  Format:  
+  ```
+  Gene_ID<TAB>GO:ID1,GO:ID2,...
+  ```  
+
+**Output Files**
+
+- Binary GO Term Matrix: csv with species as rows and GO terms as columns, indicating presence (`1`) or absence (`0`) of terms (`output/FantasiaAnalysis/go_term_binary_matrix.csv`).  
+- PCA Plot: plot to visualize species based on their GO term profiles (`output/FantasiaAnalysis/pca_plot.png`)
+- Focus Categories Analysis: csv summarizing the count of GO terms in each category for each species (`output/FantasiaAnalysis/focus_categories_analysis.csv`).     
+- Hierarchical Clustering Dendrogram: dendrogram of species based on focus categories (`output/FantasiaAnalysis/hierarchical_clustering_dendrogram.png`) 
+- Elbow Plot: this plot showing the optimal number of clusters for K-means clustering (`output/FantasiaAnalysis/elbow_plot.png`)
+- K-means Clusters:  cSV with species and their K-means cluster assignments (`output/FantasiaAnalysis/kmeans_clusters.csv` ).  
+- Cluster Heatmap: heatmap of focus categories across K-means clusters (`output/FantasiaAnalysis/cluster_heatmap.png`).  
+
+
+**Applications**
+
+This script performs the following steps:
+
+1. GO Term Matrix Creation: generates a binary matrix from gene-to-GO mapping files.
+
+2. PCA: reduces dimensionality and visualizes species based on their GO term profiles.
+
+3. Focus Categories Analysis: counts the number of GO terms in predefined categories for each species.
+
+4. Hierarchical Clustering: clusters species based on focus categories and generates a dendrogram.
+
+5. Elbow Method: determines the optimal number of clusters for K-means by analyzing inertia.
+
+6. K-means Clustering: performs K-means clustering on species and saves the results.
+
+7. Cluster Heatmap: visualizes the distribution of focus categories across K-means clusters.
+
+This analysis helps identify functional similarities among species based on their GO term profiles.
