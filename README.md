@@ -1,45 +1,6 @@
 # Additional-Scripts
 
-## 1. `categorizeGOterms.py`
-
-This script processes Gene Ontology (GO) annotations for transcripts to categorize GO terms into their primary categories and analyze their distribution across a proteome.
-
-1. GO Term Parsing:  
-   - Downloads and parses the `go-basic.obo` file to extract GO term categories:  
-     - Biological Process (BP): Functional processes like mitosis or photosynthesis.  
-     - Molecular Function (MF): Activities like enzymatic functions or binding.  
-     - Cellular Component (CC): Locations like the nucleus or plasma membrane.  
-
-2. Data Categorization:  
-   - Processes a GO annotations file (e.g., `Asterionella_formosa_topgo.txt`) containing transcript IDs and associated GO terms.  
-   - Categorizes GO terms for each transcript into BP, MF, and CC based on the parsed data.  
-
-3. Distribution Analysis:  
-   - Identifies the distribution of GO annotations for transcripts across single, double, or all three categories (BP, MF, CC).  
-   - Counts transcripts in different category combinations.  
-
-4. Visualization:  
-   - Creates a bar plot to visualize the distribution of transcripts across GO categories.  
-
-**Input Files**
-
-- GO annotations file: Contains transcript IDs and comma-separated GO terms (e.g., `Asterionella_formosa_topgo.txt`).  
-- GO term-to-category mapping file: Generated from `go-basic.obo` (e.g., `go_categories.csv`).  
-
-**Outputs**
-
-- Category Distribution Summary:  the number of transcripts annotated in one, two, or all three GO categories.
-- Enhanced GO Data: detailed dataset with transcript IDs, GO terms, and their categorization into BP, MF, and CC.  
-- Visualization: bar plot showing the distribution of transcripts across GO category combinations.  
-
-**Applications**
-
-- Comparative proteomics to assess GO annotation distributions in single-exon genes or across species.  
-- Functional annotation analysis for transcriptomic studies.  
-
-
-
-## 2. `conservedProteins.py`
+## 1. `conservedProteins.py`
 
 This script processes orthogroup data for a set of protein sequences and selects conserved orthogroups present in at least 50% of species.
 
@@ -77,6 +38,45 @@ This script processes orthogroup data for a set of protein sequences and selects
 - Identification of conserved orthogroups for evolutionary or comparative genomic studies.  
 - Preparing input files for tools like BRAKER2/3 for gene prediction or annotation refinement.  
 - Functional and taxonomic analysis of conserved protein families across species.  
+
+
+## 2. `categorizeGOterms.py`
+
+This script processes Gene Ontology (GO) annotations for transcripts to categorize GO terms into their primary categories and analyze their distribution across a proteome.
+
+1. GO Term Parsing:  
+   - Downloads and parses the `go-basic.obo` file to extract GO term categories:  
+     - Biological Process (BP): Functional processes like mitosis or photosynthesis.  
+     - Molecular Function (MF): Activities like enzymatic functions or binding.  
+     - Cellular Component (CC): Locations like the nucleus or plasma membrane.  
+
+2. Data Categorization:  
+   - Processes a GO annotations file (e.g., `Asterionella_formosa_topgo.txt`) containing transcript IDs and associated GO terms.  
+   - Categorizes GO terms for each transcript into BP, MF, and CC based on the parsed data.  
+
+3. Distribution Analysis:  
+   - Identifies the distribution of GO annotations for transcripts across single, double, or all three categories (BP, MF, CC).  
+   - Counts transcripts in different category combinations.  
+
+4. Visualization:  
+   - Creates a bar plot to visualize the distribution of transcripts across GO categories.  
+
+**Input Files**
+
+- GO annotations file: Contains transcript IDs and comma-separated GO terms (e.g., `Asterionella_formosa_topgo.txt`).  
+- GO term-to-category mapping file: Generated from `go-basic.obo` (e.g., `go_categories.csv`).  
+
+**Outputs**
+
+- Category Distribution Summary:  the number of transcripts annotated in one, two, or all three GO categories.
+- Enhanced GO Data: detailed dataset with transcript IDs, GO terms, and their categorization into BP, MF, and CC.  
+- Visualization: bar plot showing the distribution of transcripts across GO category combinations.  
+
+**Applications**
+
+- Comparative proteomics to assess GO annotation distributions in single-exon genes or across species.  
+- Functional annotation analysis for transcriptomic studies. 
+
 
 ## 3. `gettopGO.py`
 
